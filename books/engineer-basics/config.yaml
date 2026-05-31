@@ -4,7 +4,7 @@ summary: |
   コンピュータの仕組みからプログラミング、ネットワーク、データベース、セキュリティ、Git、CI/CD、クラウド、
   そしてAI時代の開発まで、現場で前提とされる知識を体系的に解説します。
 topics: ["computerscience", "プログラミング", "ネットワーク", "データベース", "初心者"]
-published: false
+published: true
 price: 0
 chapters:
   - 01-computer-architecture
