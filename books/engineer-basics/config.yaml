@@ -1,0 +1,33 @@
+title: "新人エンジニアのための『本当に全部』入門 〜コンピュータの土台からAI時代の開発まで〜"
+summary: |
+  新人エンジニア・学生を対象に、ソフトウェアエンジニアリングの基礎を一冊で見渡せるようにまとめた入門書です。
+  コンピュータの仕組みからプログラミング、ネットワーク、データベース、セキュリティ、Git、CI/CD、クラウド、
+  そしてAI時代の開発まで、現場で前提とされる知識を体系的に解説します。
+topics: ["computerscience", "プログラミング", "ネットワーク", "データベース", "初心者"]
+published: false
+price: 0
+chapters:
+  - 01-computer-architecture
+  - 02-binary-and-encoding
+  - 03-os-basics
+  - 04-shell-cli
+  - 05-what-is-programming
+  - 06-data-structures
+  - 07-algorithms
+  - 08-paradigms
+  - 09-network-basics
+  - 10-http-web
+  - 11-browser-frontend
+  - 12-api-design
+  - 13-rdb-intro
+  - 14-sql-basics
+  - 15-nosql-cache
+  - 16-data-modeling
+  - 17-security-basics
+  - 18-testing
+  - 19-debug-log
+  - 20-git
+  - 21-ci-cd
+  - 22-cloud-container
+  - 23-ops-monitoring
+  - 24-ai-era
