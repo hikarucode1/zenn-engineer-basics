@@ -1,0 +1,22 @@
+title: "駆け出しセキュリティエンジニアの教科書"
+summary: "これからセキュリティエンジニアを目指す未経験者・学生向けに、業界の地図・基礎知識・領域別の入門・現場の仕事・学習ロードマップまでを広く浅くまとめた入門書。"
+topics: ["security", "セキュリティ", "beginner", "キャリア"]
+published: true
+price: 0
+chapters:
+  - preface
+  - chapter01
+  - chapter02
+  - chapter03
+  - chapter04
+  - chapter05
+  - chapter06
+  - chapter07
+  - chapter08
+  - chapter09
+  - chapter10
+  - chapter11
+  - chapter12
+  - chapter13
+  - chapter14
+  - afterword
