@@ -3,9 +3,7 @@ title: "AIに『3人の専門家会議』をさせる ― マルチエージェ�
 emoji: "🪞"
 type: "tech"
 topics: ["claude", "nextjs", "ai", "youcam", "マルチエージェント"]
-published: false
-# ↑ Zenn 公開時に true。Obsidian下書き段階のため false。
-# draft-status: writing  (2026-06-20 着手 / 締切 2026-06-26)
+published: true
 ---
 
 > 本記事は [Zenn Fes Spring 2026 / YouCam API コンテスト](https://zenn.dev/contests/zennfes-spring-2026-perfect) 応募作品 **「トリアージュ (Triage)」** の技術解説です。
@@ -54,8 +52,7 @@ published: false
 
 撮影 → 3賢者の並列会議 → アクションプランまでの実機フローです。
 
-@[youtube](ZZZZZZ)
-<!-- TODO: トリアージュ_demo.mp4 を YouTube 限定公開でアップ → 動画IDに差し替え（または GIF を貼る） -->
+@[youtube](qlyhhvTCy1o)
 
 ---
 
@@ -269,14 +266,3 @@ LLMアプリは「賢いプロンプト1発」になりがちですが、**役�
 :::message alert
 トリアージュは医療行為ではありません。表示される助言は一般的な情報の整理であり、診断・治療の代替にはなりません。
 :::
-
----
-
-<!-- TODO(フェーズ5):
-- [x] デモGIF/動画を「なぜ会議型か」「実装3 SSE」セクションに挿入
-      素材: ~/Downloads/トリアージュ_demo.mp4（本編58秒）/ トリアージュ_会議ハイライト.gif（会議8秒）
-- [ ] 本編mp4を YouTube 限定公開でアップ → §なぜ会議型か の @[youtube](ZZZZZZ) を動画IDに差し替え
-- [ ] 会議ハイライトGIFを Zenn 画像としてアップ → §実装3 の /images/triage-council.gif パスを合わせる
-- [ ] 本番URL・スクショ追加
-- [ ] published: true / topics 最終調整
--->
