@@ -48,6 +48,28 @@ published: true
 
 肌の解析には **YouCam Skin Analysis API（HDモード）** を使い、14の健康度スコア + 肌質 + 推定肌年齢を取得しています。
 
+:::message
+**設計判断: 賢者には「盛らない生スコア」を渡す**
+YouCam Skin Analysis は同じ解析に対し **2種類のスコア** を返します ―― 画面表示用に*気持ちよく*調整された `ui_score`（整数 1-100）と、調整前の生測定値 `raw_score`（小数）です。公式も ui_score を「favorable な結果を出すための psychological motivator」と説明しています。
+トリアージュは **医療のトリアージュ（優先度判定）** を名乗る以上、*診断は盛ってはいけない*。そこで **UI 表示には `ui_score`、3賢者の議論には `raw_score`** と、入力を明確に分けました。
+:::
+
+```ts
+// src/lib/adapters.ts ― 賢者に渡すのは raw_score（ui_score ではない）
+for (const [k, v] of Object.entries(results.scores)) {
+  if (v) scores[k] = v.raw_score;
+}
+```
+
+`ui_score`（盛った値）が議論に混ざると助言の前提が歪むので、system prompt にもルールを明文化して二重に防いでいます。
+
+```ts
+// src/lib/claude/system.ts
+- スコアは raw_score (0-100) のままで論じます。ui_score は UI 表示専用で渡されません
+```
+
+「見せるスコアは優しく、診るスコアは正直に」 ―― 同じAPIレスポンスの2値を**役割で使い分ける**のが、ビューティ×医療の橋渡しで効いてくる設計でした。
+
 ### 🎬 デモ（実機フル疎通・58秒）
 
 撮影 → 3賢者の並列会議 → アクションプランまでの実機フローです。
@@ -225,7 +247,7 @@ yield { type: "fallback", reason: `validation failed twice`, observations };
 
 ---
 
-## おまけ: YouCam 実機連携で踏んだ罠
+## YouCam 実機連携で踏んだ罠（入力側）
 
 マルチエージェントが主役の記事ですが、**入力（肌解析）側**でも実機検証で何度か転びました。同じ API を使う人向けにメモを残します。
 
