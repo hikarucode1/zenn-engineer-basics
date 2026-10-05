@@ -1,0 +1,11 @@
+title: "0から手を動かして学べるネットワーク（基礎編）"
+summary: |
+  PC 1台の中に、Linux の network namespace で「仮想の PC・スイッチ・ルータ」を組み立てながら、
+  IP・ARP・ルーティング・TCP/UDP・NAT・DNS・HTTP を一つずつ確かめていく入門書です。
+  各章で「つなぐ → 壊す → 観察する → 直す」を実際に手を動かして体験します。
+topics: ["network", "linux", "tcpip", "ネットワーク", "初心者"]
+published: false
+price: 0
+chapters:
+  - 00-introduction
+  - 01-two-pcs
