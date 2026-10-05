@@ -192,15 +192,13 @@ sudo ip netns exec dns1 dnsmasq --no-daemon --no-resolv --no-hosts --bind-interf
 
 長いので、オプションを分けて説明します。
 
-| オプション | 意味 |
-|---|---|
-| `--no-daemon` | 裏に回らず、このターミナルで動き続ける。ログもここに出る |
-| `--no-resolv` / `--no-hosts` | 元の Ubuntu の `/etc/resolv.conf` と `/etc/hosts` を読まない |
-| `--bind-interfaces --listen-address=192.168.0.53` | `192.168.0.53` 宛ての問い合わせだけを受け付ける |
-| `--local=/example.test/` | `example.test` の名前は自分が全部知っている。知らない名前は「無い」と答える |
-| `--local-ttl=300` | 答えを「300 秒間は覚えておいてよい」と伝える（後述） |
-| `--host-record=www.example.test,192.168.0.80` | `www.example.test` は `192.168.0.80`、という対応を登録する |
-| `--log-queries` | 問い合わせが来るたびにログを出す |
+- `--no-daemon`：裏に回らず、このターミナルで動き続ける。ログもここに出る
+- `--no-resolv`、`--no-hosts`：元の Ubuntu の `/etc/resolv.conf` と `/etc/hosts` を読まない
+- `--bind-interfaces`、`--listen-address=192.168.0.53`：`192.168.0.53` 宛ての問い合わせだけを受け付ける
+- `--local=/example.test/`：`example.test` の名前は自分が全部知っている。知らない名前は「無い」と答える
+- `--local-ttl=300`：答えを「300 秒間は覚えておいてよい」と伝える（後述）
+- `--host-record=www.example.test,192.168.0.80`：`www.example.test` は `192.168.0.80`、という対応を登録する
+- `--log-queries`：問い合わせが来るたびにログを出す
 
 ターミナル2に、次のように表示されて止まります。
 
@@ -259,12 +257,12 @@ www.example.test.	300	IN	A	192.168.0.80
 
 長いですが、見るべきところは4か所です。
 
-| 場所 | 値 | 意味 |
-|---|---|---|
-| `status:` | `NOERROR` | 問い合わせは成功した |
-| `QUESTION SECTION` | `www.example.test. IN A` | 「`www.example.test` の **A レコード**（IPv4 アドレス）は？」と聞いた |
-| `ANSWER SECTION` | `www.example.test. 300 IN A 192.168.0.80` | 答えは `192.168.0.80`。**300 秒間は覚えておいてよい** |
-| `SERVER:` | `192.168.0.53#53 ... (UDP)` | `192.168.0.53` の **53 番に UDP で**聞いた |
+| 場所 | 読み方 |
+|---|---|
+| `status:` | `NOERROR`：問い合わせは成功した |
+| `QUESTION SECTION` | 「`www.example.test` の **A レコード**（IPv4 アドレス）は？」と聞いた |
+| `ANSWER SECTION` | 答えは `192.168.0.80`。**300 秒間は覚えておいてよい** |
+| `SERVER:` | `192.168.0.53` の **53 番に UDP で**聞いた |
 
 ANSWER の行の `300` は **TTL**（Time To Live）です。第5章の IP パケットの TTL とは別物で、こちらは「この答えを**何秒間覚えておいて（キャッシュして）よいか**」を表します。毎回 DNS サーバに聞きに行かずに済むようにするための工夫です。
 
@@ -449,10 +447,10 @@ ping: www.example.test: Temporary failure in name resolution
 
 さっきまで届いていた `www.example.test` に、`Temporary failure in name resolution` が出るようになりました。
 
-| `ping` のメッセージ | `dig` の結果 | 意味 | 調べること |
-|---|---|---|---|
-| `Name or service not known` | `status: NXDOMAIN` | DNS サーバに聞けた。**その名前は無い**と言われた | 名前の綴り、DNS サーバへの登録 |
-| `Temporary failure in name resolution` | `no servers could be reached` / `timed out` | **DNS サーバに聞けなかった** | `/etc/resolv.conf`、DNS サーバが動いているか、そこまで届くか |
+| `ping` のメッセージ | 意味 | 調べること |
+|---|---|---|
+| `Name or service not known` | DNS サーバに聞けた。**その名前は無い**と言われた（`dig` では `NXDOMAIN`） | 名前の綴り、DNS サーバへの登録 |
+| `Temporary failure in name resolution` | **DNS サーバに聞けなかった**（`dig` では `no servers could be reached` など） | `/etc/resolv.conf`、DNS サーバが動いているか、そこまで届くか |
 
 この2つを区別できるだけで、「名前の問題」なのか「DNS サーバへの通信の問題」なのかが分かります。
 
