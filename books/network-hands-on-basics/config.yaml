@@ -4,7 +4,7 @@ summary: |
   IP・ARP・ルーティング・TCP/UDP・NAT・DNS・HTTP を一つずつ確かめていく入門書です。
   各章で「つなぐ → 壊す → 観察する → 直す」を実際に手を動かして体験します。
 topics: ["network", "linux", "tcpip", "ネットワーク", "初心者"]
-published: false
+published: true
 price: 0
 chapters:
   - 00-introduction
